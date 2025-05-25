@@ -10,16 +10,15 @@ const Register = () =>{
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
-        try{
-            const response = await axios.post('http://localhost:3000/register', {
+        try{ 
+            await axios.post('http://localhost:3000/register', {
                 userName,
                 password,
                 confirmPassword,
             },{
                 headers: {'Content-Type':'application/json'}
             });
-            localStorage.setItem('token', response.data.token);
-            navigate('/');
+            navigate('/Login');
         }catch(err){
             const errorMessage = err.response?.data?.error;
             console.log(errorMessage);
