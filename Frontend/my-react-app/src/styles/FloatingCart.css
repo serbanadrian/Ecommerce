@@ -1,0 +1,97 @@
+.floating-cart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  width: 300px;
+  overflow-y: auto;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.floating-cart.closed {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  background-color: white;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.floating-cart.closed .open-btn {
+  font-size: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.floating-cart .open-btn:focus {
+  outline: none;
+}
+
+.floating-cart button {
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.floating-cart ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.floating-cart li {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.floating-cart .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.floating-cart .close-btn:hover {
+  color: #333;
+}
+
+.cart-controls {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 6px;
+}
+
+.cart-controls button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #888;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.cart-controls button:hover {
+  color: #333;
+}

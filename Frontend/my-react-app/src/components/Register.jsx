@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, {useState} from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import "../styles/Register.css";
 
 const Register = () =>{
     const [userName, setUserName] = useState('');
@@ -18,39 +19,44 @@ const Register = () =>{
             },{
                 headers: {'Content-Type':'application/json'}
             });
-            navigate('/Login');
+            navigate('/');
         }catch(err){
             const errorMessage = err.response?.data?.error;
             console.log(errorMessage);
         }
     }
 
-    return(
-        <div>
-            <h2>Register</h2>
-            <form onSubmit={handleSubmit}>
-                <input
-                type="text"
-                placeholder="Username"
-                value={userName}
-                onChange={(e) => setUserName(e.target.value)}
-                />
-                <input 
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)} 
-                />
-                <input 
-                type="password" 
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                />
-                <button type="submit">Register</button>
-            </form>
-        </div>
-    );
-
-}
+    return (
+    <div className="register-container">
+      <form className="register-form" onSubmit={handleSubmit}>
+        <h2>Create Account</h2>
+        <input
+          type="text"
+          placeholder="Username"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+          className="register-input"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="register-input"
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+          className="register-input"
+        />
+        <button type="submit" className="register-button">Register</button>
+        <p className="register-login">
+          Already have an account? <Link to="/">Login</Link>
+        </p>
+      </form>
+    </div>
+  );
+};
 export default Register

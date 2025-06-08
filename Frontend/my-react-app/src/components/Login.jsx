@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, {useState} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import "../styles/Login.css";
 
 const Login = () =>{
     const [userName, setUserName] = useState('');
@@ -25,25 +26,30 @@ const Login = () =>{
         }
     }
 
-    return(
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type="text"
-                    placeholder="UserName"
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
-                />
-                <input
-                    type="password"
-                    placeholder='Password'
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <button type='submit'>Login</button>
-            </form>
-        </div>
-    );
-}
+    return (
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <input
+          type="text"
+          placeholder="UserName"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+          className="login-input"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="login-input"
+        />
+        <button type="submit" className="login-button">Login</button>
+        <p className="login-register">
+          Don't have an account? <Link to="/Register">Register</Link>
+        </p>
+      </form>
+    </div>
+  );
+};
 export default Login

@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import "../styles/AddProduct.css";
 
 const AddProduct = () =>{
     const [productName, setProductName] = useState('');
@@ -8,6 +10,7 @@ const AddProduct = () =>{
     const [category, setCategory] = useState('');
     const [image, setImage] = useState('');
     const [stock, setStock] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) =>{
         e.preventDefault();
@@ -18,54 +21,61 @@ const AddProduct = () =>{
             formData.append("category", category);
             formData.append("image", image);
             formData.append("stock", stock);
+
+        const token = localStorage.getItem("token");
         
         try{
-            await axios.post("http://localhost:3000/products",formData,
-                {headers: { "Content-Type": "multipart/form-data" }}
-            );
+            await axios.post("http://localhost:3000/products", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            navigate('/Profile');
         } catch (err) {
             console.log(err);
         }
     }
 
     return(
-        <div>
-        <form onSubmit={handleSubmit}>
-        <h2>Product name</h2>
+        <div className="add-product-container">
+        <form className="product-form" onSubmit={handleSubmit}>
+            <h2>Add a product</h2>
+        <label>Name Product</label>
         <input 
             type="text"
             placeholder="Product name"
             value={productName}
             onChange={(e) => setProductName(e.target.value)}
         />
-        <h2>Product description</h2>
+        <label>Description</label>
         <input
             type="text"
             placeholder="Product description"
             value={productDescription}
             onChange={(e) => setProductDescription(e.target.value)}
         />
-        <h2>Price</h2>
+        <label>Price</label>
         <input 
             type="number"
             placeholder="Price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
         />
-        <h2>Category</h2>
+        <label>Category</label>
         <input 
             type="text"
             placeholder="Category"
             value={category}
             onChange={(e) => setCategory(e.target.value)}
         />
-        <h2>Image {image}</h2>
+        <label>Image</label>
         <input 
             type="file"
             onChange={(e) => setImage(e.target.files[0])}
             accept="image/*"
         />
-        <h2>Stock</h2>
+        <label>Stock</label>
         <input 
             type="number"
             placeholder="Stock"
